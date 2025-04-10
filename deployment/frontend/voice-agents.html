@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Agents - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li>
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li class="active">
+                    <a href="voice-agents.html"><i class="bi bi-telephone"></i> Voice Agents</a>
+                </li>
+                <li>
+                    <a href="email-agents.html"><i class="bi bi-envelope"></i> Email Agents</a>
+                </li>
+                <li>
+                    <a href="workflows.html"><i class="bi bi-diagram-3"></i> Workflows</a>
+                </li>
+                <li>
+                    <a href="knowledge-base.html"><i class="bi bi-book"></i> Knowledge Base</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Voice Agents</h2>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newScriptModal">
+                        <i class="bi bi-plus-circle"></i> New Script
+                    </button>
+                </div>
+                
+                <!-- Voice Agent Configuration -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Twilio Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="twilioConfigForm">
+                                    <div class="mb-3">
+                                        <label for="accountSid" class="form-label">Account SID</label>
+                                        <input type="text" class="form-control" id="accountSid" value="AC1234567890abcdef1234567890abcdef">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="authToken" class="form-label">Auth Token</label>
+                                        <input type="password" class="form-control" id="authToken" value="••••••••••••••••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="phoneNumber" value="+15551234567">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Eleven Labs Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="elevenLabsConfigForm">
+                                    <div class="mb-3">
+                                        <label for="apiKey" class="form-label">API Key</label>
+                                        <input type="password" class="form-control" id="apiKey" value="••••••••••••••••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="voiceId" class="form-label">Default Voice</label>
+                                        <select class="form-select" id="voiceId">
+                                            <option value="voice1" selected>Adam (Professional Male)</option>
+                                            <option value="voice2">Sophia (Professional Female)</option>
+                                            <option value="voice3">Michael (Casual Male)</option>
+                                            <option value="voice4">Emily (Casual Female)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="stability" class="form-label">Voice Stability: 75%</label>
+                                        <input type="range" class="form-range" min="0" max="100" value="75" id="stability">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="similarity" class="form-label">Voice Similarity: 85%</label>
+                                        <input type="range" class="form-range" min="0" max="100" value="85" id="similarity">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Voice Agent Scripts -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Voice Agent Scripts</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="scriptTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="outreach-tab" data-bs-toggle="tab" data-bs-target="#outreach" type="button" role="tab" aria-controls="outreach" aria-selected="true">Initial Outreach</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="qualification-tab" data-bs-toggle="tab" data-bs-target="#qualification" type="button" role="tab" aria-controls="qualification" aria-selected="false">Qualification</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="process-tab" data-bs-toggle="tab" data-bs-target="#process" type="button" role="tab" aria-controls="process" aria-selected="false">Process Explanation</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="custom-tab" data-bs-toggle="tab" data-bs-target="#custom" type="button" role="tab" aria-controls="custom" aria-selected="false">Custom Scripts</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content p-3" id="scriptTabsContent">
+                            <div class="tab-pane fade show active" id="outreach" role="tabpanel" aria-labelledby="outreach-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Initial Outreach Script</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editOutreachScript">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testOutreachScript">
+                                            <i class="bi bi-play"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="script-content p-3 border rounded">
+                                    <p>Hello {{contact.first_name}}, this is {{user.name}} from {{user.company}}.</p>
+                                    <p>I'm reaching out because we specialize in helping {{industry}} companies like {{contact.company}} with capital raising and M&A transactions.</p>
+                                    <p>Based on our research, we believe we might be able to help you [specific value proposition based on company research].</p>
+                                    <p>I'd like to schedule a brief call to learn more about your specific situation and see if there might be a fit between our services and your needs.</p>
+                                    <p>Would you be available for a 15-minute call this week?</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.last_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{industry}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="qualification" role="tabpanel" aria-labelledby="qualification-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Qualification Script</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editQualificationScript">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testQualificationScript">
+                                            <i class="bi bi-play"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="script-content p-3 border rounded">
+                                    <p>Thanks for taking the time to speak with me today, {{contact.first_name}}.</p>
+                                    <p>To make the best use of our time, I'd like to ask you a few questions about your business and objectives:</p>
+                                    <ol>
+                                        <li>Can you tell me about your current situation and what you're looking to accomplish?</li>
+                                        <li>What's your timeline for completing this transaction?</li>
+                                        <li>Have you worked with an advisor on similar transactions before?</li>
+                                        <li>What's your target valuation or capital raise amount?</li>
+                                        <li>Have you prepared any financial projections or information memorandum?</li>
+                                    </ol>
+                                    <p>Based on your answers, I can determine if our services would be a good fit and outline the next steps in our process.</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.last_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="process" role="tabpanel" aria-labelledby="process-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Process Explanation Script</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editProcessScript">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testProcessScript">
+                                            <i class="bi bi-play"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="script-content p-3 border rounded">
+                                    <p>I'd like to walk you through our process at {{user.company}}, {{contact.first_name}}.</p>
+                                    <p>We work on a dual fee structure that aligns our incentives with your success:</p>
+                                    <ol>
+                                        <li>An engagement fee of {{deal.engagement_fee}} that covers our initial work including [specific deliverables]</li>
+                                        <li>A success fee of {{deal.success_fee_percentage}}% of the transaction value, payable only upon successful completion</li>
+                                    </ol>
+                                    <p>Our process has five key stages:</p>
+                                    <ol>
+                                        <li>Preparation: We develop all necessary materials and prepare your business for market</li>
+                                        <li>Targeting: We identify and qualify potential [investors/buyers] based on specific criteria</li>
+                                        <li>Outreach: We conduct a systematic outreach campaign to generate interest</li>
+                                        <li>Negotiation: We manage all communications and help negotiate optimal terms</li>
+                                        <li>Closing: We coordinate due diligence and closing processes</li>
+                                    </ol>
+                                    <p>The typical timeline for this type of transaction is [timeline estimate] from start to finish.</p>
+                                    <p>Do you have any questions about our process or fee structure?</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{deal.engagement_fee}}</div>
+                                    <div class="badge bg-secondary me-1">{{deal.success_fee_percentage}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Custom Scripts</h5>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#newScriptModal">
+                                        <i class="bi bi-plus-circle"></i> Add Script
+                                    </button>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Objection Handling - Price</td>
+                                            <td>Objection Handling</td>
+                                            <td>Apr 8, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Follow-up Call Script</td>
+                                            <td>Follow-up</td>
+                                            <td>Apr 7, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deal Closing Confirmation</td>
+                                            <td>Closing</td>
+                                            <td>Apr 5, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call History -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Call History</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Contact</th>
+                                    <th>Script Used</th>
+                                    <th>Duration</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Apr 9, 2025 10:15 AM</td>
+                                    <td>John Smith - ABC Corp</td>
+                                    <td>Initial Outreach</td>
+                                    <td>2:45</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Play Recording">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 8, 2025 3:30 PM</td>
+                                    <td>Sarah Johnson - XYZ Inc</td>
+                                    <td>Qualification</td>
+                                    <td>5:12</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Play Recording">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 8, 2025 11:45 AM</td>
+                                    <td>Michael Brown - 123 Industries</td>
+                                    <td>Process Explanation</td>
+                                    <td>7:30</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Play Recording">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 7, 2025 2:15 PM</td>
+                                    <td>Emily Davis - Tech Solutions</td>
+                                    <td>Initial Outreach</td>
+                                    <td>0:45</td>
+                                    <td><span class="badge bg-warning">No Answer</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Play Recording">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 7, 2025 10:30 AM</td>
+                                    <td>David Wilson - Global Ventures</td>
+                                    <td>Follow-up Call</td>
+                                    <td>3:20</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Play Recording">
+                                            <i class="bi bi-play"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Script Modal -->
+    <div class="modal fade" id="newScriptModal" tabindex="-1" aria-labelledby="newScriptModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newScriptModalLabel">Create New Voice Script</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newScriptForm">
+                        <div class="mb-3">
+                            <label for="scriptName" class="form-label">Script Name</label>
+                            <input type="text" class="form-control" id="scriptName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scriptType" class="form-label">Script Type</label>
+                            <select class="form-select" id="scriptType" required>
+                                <option value="">Select a type</option>
+                                <option value="Initial Outreach">Initial Outreach</option>
+                                <option value="Qualification">Qualification</option>
+                                <option value="Process Explanation">Process Explanation</option>
+                                <option value="Objection Handling">Objection Handling</option>
+                                <option value="Follow-up">Follow-up</option>
+                                <option value="Closing">Closing</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scriptDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="scriptDescription" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scriptContent" class="form-label">Script Content</label>
+                            <textarea class="form-control" id="scriptContent" rows="10" required></textarea>
+                            <small class="form-text text-muted">Use {{variable_name}} for dynamic content. Available variables: {{contact.first_name}}, {{contact.last_name}}, {{contact.company}}, {{user.name}}, {{user.company}}, {{deal.engagement_fee}}, {{deal.success_fee_percentage}}</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="voiceSelection" class="form-label">Voice</label>
+                            <select class="form-select" id="voiceSelection">
+                                <option value="default">Default Voice (Adam)</option>
+                                <option value="voice2">Sophia (Professional Female)</option>
+                                <option value="voice3">Michael (Casual Male)</option>
+                                <option value="voice4">Emily (Casual Female)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNewScript">Save Script</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/knowledge-base.js" type="module"></script>
+    <script src="js/voice-agents.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Agents - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li>
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li>
+                    <a href="voice-agents.html"><i class="bi bi-telephone"></i> Voice Agents</a>
+                </li>
+                <li class="active">
+                    <a href="email-agents.html"><i class="bi bi-envelope"></i> Email Agents</a>
+                </li>
+                <li>
+                    <a href="workflows.html"><i class="bi bi-diagram-3"></i> Workflows</a>
+                </li>
+                <li>
+                    <a href="knowledge-base.html"><i class="bi bi-book"></i> Knowledge Base</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Email Agents</h2>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTemplateModal">
+                        <i class="bi bi-plus-circle"></i> New Template
+                    </button>
+                </div>
+                
+                <!-- Email Agent Configuration -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Email Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="emailConfigForm">
+                                    <div class="mb-3">
+                                        <label for="smtpServer" class="form-label">SMTP Server</label>
+                                        <input type="text" class="form-control" id="smtpServer" value="smtp.gmail.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="smtpPort" class="form-label">SMTP Port</label>
+                                        <input type="text" class="form-control" id="smtpPort" value="587">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailAddress" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="emailAddress" value="deals@yourcompany.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="emailPassword" value="••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailSignature" class="form-label">Default Signature</label>
+                                        <textarea class="form-control" id="emailSignature" rows="3">Best regards,
+John Smith
+Capital Advisor | Your Company
++1 (555) 123-4567
+john@yourcompany.com</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">DeepSeek 3.1 AI Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="deepseekConfigForm">
+                                    <div class="mb-3">
+                                        <label for="apiKey" class="form-label">API Key</label>
+                                        <input type="password" class="form-control" id="apiKey" value="••••••••••••••••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="modelVersion" class="form-label">Model Version</label>
+                                        <select class="form-select" id="modelVersion">
+                                            <option value="deepseek-3.1-pro" selected>DeepSeek 3.1 Pro</option>
+                                            <option value="deepseek-3.1-standard">DeepSeek 3.1 Standard</option>
+                                            <option value="deepseek-3.0-pro">DeepSeek 3.0 Pro</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="temperature" class="form-label">Temperature: 0.7</label>
+                                        <input type="range" class="form-range" min="0" max="1" step="0.1" value="0.7" id="temperature">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="maxTokens" class="form-label">Max Tokens</label>
+                                        <input type="number" class="form-control" id="maxTokens" value="2048">
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="enableKnowledgeBase" checked>
+                                        <label class="form-check-label" for="enableKnowledgeBase">Use Dealmaker Knowledge Base</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Configuration</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Templates -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Email Templates</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="templateTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="outreach-tab" data-bs-toggle="tab" data-bs-target="#outreach" type="button" role="tab" aria-controls="outreach" aria-selected="true">Initial Outreach</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="followup-tab" data-bs-toggle="tab" data-bs-target="#followup" type="button" role="tab" aria-controls="followup" aria-selected="false">Follow-up</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="engagement-tab" data-bs-toggle="tab" data-bs-target="#engagement" type="button" role="tab" aria-controls="engagement" aria-selected="false">Engagement Agreement</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="custom-tab" data-bs-toggle="tab" data-bs-target="#custom" type="button" role="tab" aria-controls="custom" aria-selected="false">Custom Templates</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content p-3" id="templateTabsContent">
+                            <div class="tab-pane fade show active" id="outreach" role="tabpanel" aria-labelledby="outreach-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Initial Outreach Email</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editOutreachTemplate">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testOutreachTemplate">
+                                            <i class="bi bi-envelope"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" value="Opportunity for {{contact.company}} - {{user.company}} Advisory Services" readonly>
+                                </div>
+                                <div class="template-content p-3 border rounded">
+                                    <p>Dear {{contact.first_name}},</p>
+                                    <p>I hope this email finds you well. My name is {{user.name}} from {{user.company}}, and we specialize in helping {{industry}} companies like {{contact.company}} with capital raising and M&A transactions.</p>
+                                    <p>Based on our research, we've identified {{contact.company}} as a potential fit for our advisory services. Our clients typically achieve [specific value proposition, e.g., "20-30% higher valuations" or "40% faster closing times"] through our structured approach.</p>
+                                    <p>I'd welcome the opportunity to learn more about your specific situation and share how we might be able to help. Would you be available for a brief 15-minute call this week?</p>
+                                    <p>You can book directly on my calendar here: [Calendar Link]</p>
+                                    <p>Looking forward to connecting.</p>
+                                    <p>Best regards,<br>
+                                    {{user.name}}<br>
+                                    {{user.position}} | {{user.company}}<br>
+                                    {{user.phone}}<br>
+                                    {{user.email}}</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.last_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.position}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.phone}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.email}}</div>
+                                    <div class="badge bg-secondary me-1">{{industry}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="followup" role="tabpanel" aria-labelledby="followup-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Follow-up Email</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editFollowupTemplate">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testFollowupTemplate">
+                                            <i class="bi bi-envelope"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" value="Following up - {{user.company}} and {{contact.company}}" readonly>
+                                </div>
+                                <div class="template-content p-3 border rounded">
+                                    <p>Dear {{contact.first_name}},</p>
+                                    <p>I wanted to follow up on my previous email regarding how {{user.company}} might be able to support {{contact.company}}'s growth objectives.</p>
+                                    <p>We recently helped a company in your industry [specific result, e.g., "secure $15M in growth capital at a valuation 25% above initial expectations"]. I've attached a brief case study that outlines our approach and the results achieved.</p>
+                                    <p>I understand you're busy, but I'd value the opportunity to have a brief conversation to explore if we might be able to deliver similar results for {{contact.company}}.</p>
+                                    <p>Would you be available for a 15-minute call next week?</p>
+                                    <p>Best regards,<br>
+                                    {{user.name}}<br>
+                                    {{user.position}} | {{user.company}}<br>
+                                    {{user.phone}}<br>
+                                    {{user.email}}</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.position}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.phone}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.email}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="engagement" role="tabpanel" aria-labelledby="engagement-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Engagement Agreement Email</h5>
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2" id="editEngagementTemplate">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" id="testEngagementTemplate">
+                                            <i class="bi bi-envelope"></i> Test
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Subject</label>
+                                    <input type="text" class="form-control" value="{{contact.company}} - Advisory Engagement Agreement" readonly>
+                                </div>
+                                <div class="template-content p-3 border rounded">
+                                    <p>Dear {{contact.first_name}},</p>
+                                    <p>Thank you for our productive conversation regarding {{user.company}}'s advisory services for {{contact.company}}.</p>
+                                    <p>As discussed, I've attached our standard engagement agreement that outlines:</p>
+                                    <ol>
+                                        <li>The scope of services we'll provide</li>
+                                        <li>Our fee structure (engagement fee and success-based compensation)</li>
+                                        <li>The timeline and deliverables</li>
+                                        <li>Next steps to initiate the engagement</li>
+                                    </ol>
+                                    <p>Please review the agreement and let me know if you have any questions. Once you're comfortable with the terms, you can sign electronically using the link provided.</p>
+                                    <p>Upon execution, we'll schedule our kickoff meeting and begin the preparation phase immediately.</p>
+                                    <p>I look forward to working with you on this transaction.</p>
+                                    <p>Best regards,<br>
+                                    {{user.name}}<br>
+                                    {{user.position}} | {{user.company}}<br>
+                                    {{user.phone}}<br>
+                                    {{user.email}}</p>
+                                </div>
+                                <div class="mt-3">
+                                    <h6>Available Variables:</h6>
+                                    <div class="badge bg-secondary me-1">{{contact.first_name}}</div>
+                                    <div class="badge bg-secondary me-1">{{contact.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.name}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.company}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.position}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.phone}}</div>
+                                    <div class="badge bg-secondary me-1">{{user.email}}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="custom" role="tabpanel" aria-labelledby="custom-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Custom Templates</h5>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#newTemplateModal">
+                                        <i class="bi bi-plus-circle"></i> Add Template
+                                    </button>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Created</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Due Diligence Request</td>
+                                            <td>Document Request</td>
+                                            <td>Apr 8, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-envelope"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Investor Introduction</td>
+                                            <td>Introduction</td>
+                                            <td>Apr 7, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-envelope"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deal Closing Confirmation</td>
+                                            <td>Closing</td>
+                                            <td>Apr 5, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary me-1">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="bi bi-envelope"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email History -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Email History</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Date/Time</th>
+                                    <th>Contact</th>
+                                    <th>Subject</th>
+                                    <th>Template Used</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Apr 9, 2025 11:30 AM</td>
+                                    <td>John Smith - ABC Corp</td>
+                                    <td>Opportunity for ABC Corp - Your Company Advisory Services</td>
+                                    <td>Initial Outreach</td>
+                                    <td><span class="badge bg-success">Sent</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Forward">
+                                            <i class="bi bi-forward"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 8, 2025 4:15 PM</td>
+                                    <td>Sarah Johnson - XYZ Inc</td>
+                                    <td>XYZ Inc - Advisory Engagement Agreement</td>
+                                    <td>Engagement Agreement</td>
+                                    <td><span class="badge bg-success">Sent</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Forward">
+                                            <i class="bi bi-forward"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 8, 2025 2:45 PM</td>
+                                    <td>Michael Brown - 123 Industries</td>
+                                    <td>Following up - Your Company and 123 Industries</td>
+                                    <td>Follow-up</td>
+                                    <td><span class="badge bg-success">Sent</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Forward">
+                                            <i class="bi bi-forward"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 7, 2025 3:30 PM</td>
+                                    <td>Emily Davis - Tech Solutions</td>
+                                    <td>Opportunity for Tech Solutions - Your Company Advisory Services</td>
+                                    <td>Initial Outreach</td>
+                                    <td><span class="badge bg-warning">Opened</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Forward">
+                                            <i class="bi bi-forward"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Apr 7, 2025 11:15 AM</td>
+                                    <td>David Wilson - Global Ventures</td>
+                                    <td>Due Diligence Request - Global Ventures Acquisition</td>
+                                    <td>Due Diligence Request</td>
+                                    <td><span class="badge bg-info">Replied</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-secondary me-1" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary" title="Forward">
+                                            <i class="bi bi-forward"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Template Modal -->
+    <div class="modal fade" id="newTemplateModal" tabindex="-1" aria-labelledby="newTemplateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newTemplateModalLabel">Create New Email Template</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newTemplateForm">
+                        <div class="mb-3">
+                            <label for="templateName" class="form-label">Template Name</label>
+                            <input type="text" class="form-control" id="templateName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="templateType" class="form-label">Template Type</label>
+                            <select class="form-select" id="templateType" required>
+                                <option value="">Select a type</option>
+                                <option value="Outreach">Outreach</option>
+                                <option value="Follow-up">Follow-up</option>
+                                <option value="Document Request">Document Request</option>
+                                <option value="Introduction">Introduction</option>
+                                <option value="Closing">Closing</option>
+                                <option value="Custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="templateDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="templateDescription" rows="2"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="templateSubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="templateSubject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="templateBody" class="form-label">Email Body</label>
+                            <textarea class="form-control" id="templateBody" rows="10" required></textarea>
+                            <small class="form-text text-muted">Use {{variable_name}} for dynamic content. Available variables: {{contact.first_name}}, {{contact.last_name}}, {{contact.company}}, {{user.name}}, {{user.company}}, {{user.position}}, {{user.phone}}, {{user.email}}</small>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="useAI" checked>
+                            <label class="form-check-label" for="useAI">Use AI to enhance template</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNewTemplate">Save Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/knowledge-base.js" type="module"></script>
+    <script src="js/email-agents.js" type="module"></script>
+</body>
+</html>

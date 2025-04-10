@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li>
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li>
+                    <a href="voice-agents.html"><i class="bi bi-telephone"></i> Voice Agents</a>
+                </li>
+                <li>
+                    <a href="email-agents.html"><i class="bi bi-envelope"></i> Email Agents</a>
+                </li>
+                <li>
+                    <a href="workflows.html"><i class="bi bi-diagram-3"></i> Workflows</a>
+                </li>
+                <li>
+                    <a href="knowledge-base.html"><i class="bi bi-book"></i> Knowledge Base</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li class="active">
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <h2 class="mb-4">Settings</h2>
+                
+                <!-- Settings Navigation Tabs -->
+                <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="company-tab" data-bs-toggle="tab" data-bs-target="#company" type="button" role="tab" aria-controls="company" aria-selected="false">Company</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab" aria-controls="users" aria-selected="false">Users & Teams</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="integrations-tab" data-bs-toggle="tab" data-bs-target="#integrations" type="button" role="tab" aria-controls="integrations" aria-selected="false">Integrations</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="voice-settings-tab" data-bs-toggle="tab" data-bs-target="#voice-settings" type="button" role="tab" aria-controls="voice-settings" aria-selected="false">Voice Agent</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="email-settings-tab" data-bs-toggle="tab" data-bs-target="#email-settings" type="button" role="tab" aria-controls="email-settings" aria-selected="false">Email Agent</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
+                    </li>
+                </ul>
+                
+                <!-- Tab Content -->
+                <div class="tab-content" id="settingsTabContent">
+                    <!-- Profile Settings -->
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-3 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Profile Picture">
+                                        <h5>John Dealmaker</h5>
+                                        <p class="text-muted">Capital Advisor</p>
+                                        <button class="btn btn-outline-primary btn-sm">Change Photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Personal Information</h5>
+                                        <form>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label for="firstName" class="form-label">First Name</label>
+                                                    <input type="text" class="form-control" id="firstName" value="John">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="lastName" class="form-label">Last Name</label>
+                                                    <input type="text" class="form-control" id="lastName" value="Dealmaker">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="email" value="john@dealmaker.com">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phone" class="form-label">Phone</label>
+                                                <input type="tel" class="form-control" id="phone" value="+1 (555) 123-4567">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="title" class="form-label">Job Title</label>
+                                                <input type="text" class="form-control" id="title" value="Capital Advisor">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="timezone" class="form-label">Timezone</label>
+                                                <select class="form-select" id="timezone">
+                                                    <option value="UTC-8">Pacific Time (UTC-8)</option>
+                                                    <option value="UTC-7">Mountain Time (UTC-7)</option>
+                                                    <option value="UTC-6">Central Time (UTC-6)</option>
+                                                    <option value="UTC-5" selected>Eastern Time (UTC-5)</option>
+                                                    <option value="UTC+0">UTC</option>
+                                                    <option value="UTC+1">Central European Time (UTC+1)</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Company Settings -->
+                    <div class="tab-pane fade" id="company" role="tabpanel" aria-labelledby="company-tab">
+                        <div class="row">
+                            <div class="col-md-3 mb-4">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <img src="https://via.placeholder.com/150" class="mb-3" alt="Company Logo">
+                                        <h5>Dealmaker Capital</h5>
+                                        <button class="btn btn-outline-primary btn-sm">Change Logo</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Company Information</h5>
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="companyName" class="form-label">Company Name</label>
+                                                <input type="text" class="form-control" id="companyName" value="Dealmaker Capital">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="website" class="form-label">Website</label>
+                                                <input type="url" class="form-control" id="website" value="https://dealmakercapital.com">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="industry" class="form-label">Industry</label>
+                                                <select class="form-select" id="industry">
+                                                    <option>Select Industry</option>
+                                                    <option selected>Financial Services</option>
+                                                    <option>Investment Banking</option>
+                                                    <option>Private Equity</option>
+                                                    <option>Venture Capital</option>
+                                                    <option>Real Estate</option>
+                                                    <option>Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="companySize" class="form-label">Company Size</label>
+                                                <select class="form-select" id="companySize">
+                                                    <option>Select Size</option>
+                                                    <option selected>1-10 employees</option>
+                                                    <option>11-50 employees</option>
+                                                    <option>51-200 employees</option>
+                                                    <option>201-500 employees</option>
+                                                    <option>501+ employees</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="address" class="form-label">Address</label>
+                                                <textarea class="form-control" id="address" rows="3">123 Dealmaker Street, Suite 500
+New York, NY 10001
+United States</textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Users & Teams Settings -->
+                    <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="users-tab">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Users</h5>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                    <i class="bi bi-plus-circle"></i> Add User
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                                <th>Status</th>
+                                                <th>Last Login</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>John Dealmaker</td>
+                                                <td>john@dealmaker.com</td>
+                                                <td>Admin</td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Today, 10:23 AM</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sarah Johnson</td>
+                                                <td>sarah@dealmaker.com</td>
+                                                <td>Deal Manager</td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Yesterday, 3:45 PM</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Michael Chen</td>
+                                                <td>michael@dealmaker.com</td>
+                                                <td>Analyst</td>
+                                                <td><span class="badge bg-success">Active</span></td>
+                                                <td>Apr 8, 2025, 9:12 AM</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Emily Rodriguez</td>
+                                                <td>emily@dealmaker.com</td>
+                                                <td>Advisor</td>
+                                                <td><span class="badge bg-secondary">Invited</span></td>
+                                                <td>Never</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Teams</h5>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addTeamModal">
+                                    <i class="bi bi-plus-circle"></i> Add Team
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Team Name</th>
+                                                <th>Members</th>
+                                                <th>Description</th>
+                                                <th>Created</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Capital Raise Team</td>
+                                                <td>3 members</td>
+                                                <td>Focused on capital raising deals</td>
+                                                <td>Mar 15, 2025</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>M&A Advisory</td>
+                                                <td>2 members</td>
+                                                <td>Handles merger and acquisition deals</td>
+                                                <td>Mar 20, 2025</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Integrations Settings -->
+                    <div class="tab-pane fade" id="integrations" role="tabpanel" aria-labelledby="integrations-tab">
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Twilio</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="twilioSwitch" checked>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Integrate with Twilio for voice agent capabilities and SMS notifications.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Eleven Labs</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="elevenLabsSwitch" checked>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Connect with Eleven Labs for advanced voice synthesis and natural language processing.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">DeepSeek</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="deepSeekSwitch" checked>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Integrate with DeepSeek 3.1 for email agent capabilities and content generation.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Google Calendar</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="googleCalendarSwitch" checked>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Sync your meetings and appointments with Google Calendar.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Gmail</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="gmailSwitch" checked>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Connect your Gmail account for email tracking and automated follow-ups.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">DocuSign</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="docusignSwitch">
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Integrate with DocuSign for electronic signatures on contracts and agreements.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Stripe</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="stripeSwitch">
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Process payments and manage subscriptions with Stripe integration.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h5 class="card-title">Zapier</h5>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="zapierSwitch">
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Connect with thousands of apps through Zapier automation.</p>
+                                        <button class="btn btn-outline-primary btn-sm">Configure</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card h-100 border-dashed">
+                                    <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                                        <i class="bi bi-plus-circle display-4 text-muted mb-3"></i>
+                                        <h5 class="card-title">Add New Integration</h5>
+                                        <p class="card-text">Browse the integration marketplace</p>
+                                        <button class="btn btn-outline-primary btn-sm">Explore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Agent Settings -->
+                    <div class="tab-pane fade" id="voice-settings" role="tabpanel" aria-labelledby="voice-settings-tab">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Voice Agent Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="voiceProvider" class="form-label">Voice Provider</label>
+                                        <select class="form-select" id="voiceProvider">
+                                            <option value="twilio" selected>Twilio</option>
+                                            <option value="vonage">Vonage API Platform</option>
+                                            <option value="messagebird">MessageBird</option>
+                                            <option value="plivo">Plivo</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apiKey" class="form-label">API Key</label>
+                                        <input type="password" class="form-control" id="apiKey" value="••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apiSecret" class="form-label">API Secret</label>
+                                        <input type="password" class="form-control" id="apiSecret" value="••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phoneNumber" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phoneNumber" value="+1 (555) 987-6543">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="voiceSynthesisProvider" class="form-label">Voice Synthesis Provider</label>
+                                        <select class="form-select" id="voiceSynthesisProvider">
+                                            <option value="elevenlabs" selected>Eleven Labs</option>
+                                            <option value="google">Google Text-to-Speech</option>
+                                            <option value="amazon">Amazon Polly</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="voiceSynthesisApiKey" class="form-label">Voice Synthesis API Key</label>
+                                        <input type="password" class="form-control" id="voiceSynthesisApiKey" value="••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="defaultVoice" class="form-label">Default Voice</label>
+                                        <select class="form-select" id="defaultVoice">
+                                            <option value="adam">Adam (Male, Professional)</option>
+                                            <option value="rachel" selected>Rachel (Female, Professional)</option>
+                                            <option value="thomas">Thomas (Male, Friendly)</option>
+                                            <option value="emily">Emily (Female, Friendly)</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="callRecording" class="form-label">Call Recording</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="callRecording" checked>
+                                            <label class="form-check-label" for="callRecording">Enable call recording</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="transcription" class="form-label">Call Transcription</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="transcription" checked>
+                                            <label class="form-check-label" for="transcription">Enable call transcription</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-outline-secondary ms-2">Test Connection</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Voice Agent Behavior</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="knowledgeBaseConnection" class="form-label">Knowledge Base Connection</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="knowledgeBaseConnection" checked>
+                                            <label class="form-check-label" for="knowledgeBaseConnection">Connect voice agent to knowledge base</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="callHandling" class="form-label">Call Handling</label>
+                                        <select class="form-select" id="callHandling">
+                                            <option value="auto_answer" selected>Auto-answer all calls</option>
+                                            <option value="business_hours">Auto-answer during business hours only</option>
+                                            <option value="manual">Manual answer only</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessHoursStart" class="form-label">Business Hours Start</label>
+                                        <input type="time" class="form-control" id="businessHoursStart" value="09:00">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="businessHoursEnd" class="form-label">Business Hours End</label>
+                                        <input type="time" class="form-control" id="businessHoursEnd" value="17:00">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="voiceMailMessage" class="form-label">Voicemail Message</label>
+                                        <textarea class="form-control" id="voiceMailMessage" rows="3">Thank you for calling Dealmaker Capital. We're currently unavailable. Please leave a message after the tone and we'll get back to you as soon as possible.</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="callForwarding" class="form-label">Call Forwarding</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="callForwarding" checked>
+                                            <label class="form-check-label" for="callForwarding">Enable call forwarding</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="forwardingNumber" class="form-label">Forwarding Number</label>
+                                        <input type="tel" class="form-control" id="forwardingNumber" value="+1 (555) 123-4567">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Agent Settings -->
+                    <div class="tab-pane fade" id="email-settings" role="tabpanel" aria-labelledby="email-settings-tab">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Email Agent Configuration</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="emailProvider" class="form-label">Email Provider</label>
+                                        <select class="form-select" id="emailProvider">
+                                            <option value="gmail" selected>Gmail</option>
+                                            <option value="outlook">Outlook</option>
+                                            <option value="smtp">Custom SMTP</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailAddress" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="emailAddress" value="deals@dealmaker.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailPassword" class="form-label">Password / App Password</label>
+                                        <input type="password" class="form-control" id="emailPassword" value="••••••••••••••••">
+                                    </div>
+                                    <div id="smtpSettings" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="smtpServer" class="form-label">SMTP Server</label>
+                                            <input type="text" class="form-control" id="smtpServer">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="smtpPort" class="form-label">SMTP Port</label>
+                                            <input type="number" class="form-control" id="smtpPort">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="smtpSecurity" class="form-label">Security</label>
+                                            <select class="form-select" id="smtpSecurity">
+                                                <option value="tls">TLS</option>
+                                                <option value="ssl">SSL</option>
+                                                <option value="none">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="aiProvider" class="form-label">AI Provider</label>
+                                        <select class="form-select" id="aiProvider">
+                                            <option value="deepseek" selected>DeepSeek 3.1</option>
+                                            <option value="openai">OpenAI</option>
+                                            <option value="anthropic">Anthropic</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="aiApiKey" class="form-label">AI API Key</label>
+                                        <input type="password" class="form-control" id="aiApiKey" value="••••••••••••••••">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailSignature" class="form-label">Email Signature</label>
+                                        <textarea class="form-control" id="emailSignature" rows="4">John Dealmaker
+Capital Advisor
+Dealmaker Capital
+Phone: +1 (555) 123-4567
+Email: john@dealmaker.com
+Website: https://dealmakercapital.com</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-outline-secondary ms-2">Test Connection</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Email Agent Behavior</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="knowledgeBaseConnectionEmail" class="form-label">Knowledge Base Connection</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="knowledgeBaseConnectionEmail" checked>
+                                            <label class="form-check-label" for="knowledgeBaseConnectionEmail">Connect email agent to knowledge base</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="autoResponder" class="form-label">Auto-Responder</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="autoResponder" checked>
+                                            <label class="form-check-label" for="autoResponder">Enable auto-responder for new emails</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="autoResponderMessage" class="form-label">Auto-Responder Message</label>
+                                        <textarea class="form-control" id="autoResponderMessage" rows="3">Thank you for your email. I've received your message and will get back to you as soon as possible. For urgent matters, please call +1 (555) 123-4567.</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="followUpSchedule" class="form-label">Follow-Up Schedule</label>
+                                        <select class="form-select" id="followUpSchedule">
+                                            <option value="3_days" selected>3 days after no response</option>
+                                            <option value="5_days">5 days after no response</option>
+                                            <option value="7_days">7 days after no response</option>
+                                            <option value="custom">Custom schedule</option>
+                                            <option value="disabled">Disabled</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailTracking" class="form-label">Email Tracking</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="emailTracking" checked>
+                                            <label class="form-check-label" for="emailTracking">Enable email open and click tracking</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailCategories" class="form-label">Email Categories</label>
+                                        <select class="form-select" id="emailCategories" multiple size="4">
+                                            <option value="leads" selected>Leads</option>
+                                            <option value="deals" selected>Deals</option>
+                                            <option value="advisors" selected>Advisors</option>
+                                            <option value="partners" selected>Partners</option>
+                                            <option value="investors" selected>Investors</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple categories</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Settings -->
+                    <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Password & Authentication</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">Current Password</label>
+                                        <input type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="newPassword" class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="twoFactorAuth" class="form-label">Two-Factor Authentication</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
+                                            <label class="form-check-label" for="twoFactorAuth">Enable two-factor authentication</label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Password</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Session Management</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Active Sessions</label>
+                                    <div class="list-group">
+                                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Chrome on Windows</h6>
+                                                <small class="text-muted">Current session • New York, USA • Started today at 10:23 AM</small>
+                                            </div>
+                                            <span class="badge bg-primary">Current</span>
+                                        </div>
+                                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Safari on iPhone</h6>
+                                                <small class="text-muted">New York, USA • Started yesterday at 3:45 PM</small>
+                                            </div>
+                                            <button class="btn btn-sm btn-outline-danger">Revoke</button>
+                                        </div>
+                                        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <h6 class="mb-1">Firefox on MacBook</h6>
+                                                <small class="text-muted">Boston, USA • Started Apr 7, 2025 at 9:12 AM</small>
+                                            </div>
+                                            <button class="btn btn-sm btn-outline-danger">Revoke</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-danger">Revoke All Other Sessions</button>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Data & Privacy</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="dataRetention" class="form-label">Data Retention</label>
+                                        <select class="form-select" id="dataRetention">
+                                            <option value="1_year">1 Year</option>
+                                            <option value="3_years" selected>3 Years</option>
+                                            <option value="5_years">5 Years</option>
+                                            <option value="7_years">7 Years</option>
+                                            <option value="indefinite">Indefinite</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="dataEncryption" class="form-label">Data Encryption</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="dataEncryption" checked>
+                                            <label class="form-check-label" for="dataEncryption">Enable end-to-end encryption</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="activityLogging" class="form-label">Activity Logging</label>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="activityLogging" checked>
+                                            <label class="form-check-label" for="activityLogging">Enable activity logging</label>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="dataExport" class="form-label">Data Export</label>
+                                        <div>
+                                            <button type="button" class="btn btn-outline-primary" id="dataExport">Export All Data</button>
+                                            <small class="form-text text-muted d-block mt-1">Download a copy of all your data in JSON format</small>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="accountDeletion" class="form-label">Account Deletion</label>
+                                        <div>
+                                            <button type="button" class="btn btn-outline-danger" id="accountDeletion">Delete Account</button>
+                                            <small class="form-text text-muted d-block mt-1">This action is permanent and cannot be undone</small>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm">
+                        <div class="mb-3">
+                            <label for="newUserName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="newUserName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newUserEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="newUserEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newUserRole" class="form-label">Role</label>
+                            <select class="form-select" id="newUserRole" required>
+                                <option value="">Select role</option>
+                                <option value="admin">Admin</option>
+                                <option value="deal_manager">Deal Manager</option>
+                                <option value="analyst">Analyst</option>
+                                <option value="advisor">Advisor</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newUserTeam" class="form-label">Team</label>
+                            <select class="form-select" id="newUserTeam">
+                                <option value="">Select team (optional)</option>
+                                <option value="capital_raise">Capital Raise Team</option>
+                                <option value="ma_advisory">M&A Advisory</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="sendInvite" checked>
+                            <label class="form-check-label" for="sendInvite">Send invitation email</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNewUser">Add User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Team Modal -->
+    <div class="modal fade" id="addTeamModal" tabindex="-1" aria-labelledby="addTeamModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTeamModalLabel">Add New Team</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTeamForm">
+                        <div class="mb-3">
+                            <label for="teamName" class="form-label">Team Name</label>
+                            <input type="text" class="form-control" id="teamName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="teamDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="teamDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="teamMembers" class="form-label">Team Members</label>
+                            <select class="form-select" id="teamMembers" multiple size="4">
+                                <option value="john">John Dealmaker</option>
+                                <option value="sarah">Sarah Johnson</option>
+                                <option value="michael">Michael Chen</option>
+                                <option value="emily">Emily Rodriguez</option>
+                            </select>
+                            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple members</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNewTeam">Add Team</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

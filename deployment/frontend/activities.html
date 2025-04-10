@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li class="active">
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li>
+                    <a href="voice-agents.html"><i class="bi bi-telephone"></i> Voice Agents</a>
+                </li>
+                <li>
+                    <a href="email-agents.html"><i class="bi bi-envelope"></i> Email Agents</a>
+                </li>
+                <li>
+                    <a href="workflows.html"><i class="bi bi-diagram-3"></i> Workflows</a>
+                </li>
+                <li>
+                    <a href="knowledge-base.html"><i class="bi bi-book"></i> Knowledge Base</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Activities</h2>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#filterModal">
+                            <i class="bi bi-funnel"></i> Filter
+                        </button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newActivityModal">
+                            <i class="bi bi-plus-circle"></i> New Activity
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Calendar View -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="activityViewTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-view" type="button" role="tab" aria-controls="calendar-view" aria-selected="true">Calendar</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-view" type="button" role="tab" aria-controls="list-view" aria-selected="false">List</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="kanban-tab" data-bs-toggle="tab" data-bs-target="#kanban-view" type="button" role="tab" aria-controls="kanban-view" aria-selected="false">Kanban</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="activityViewTabsContent">
+                            <div class="tab-pane fade show active" id="calendar-view" role="tabpanel" aria-labelledby="calendar-tab">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <button class="btn btn-sm btn-outline-secondary me-2">Today</button>
+                                        <button class="btn btn-sm btn-outline-secondary me-2"><i class="bi bi-chevron-left"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary me-2"><i class="bi bi-chevron-right"></i></button>
+                                    </div>
+                                    <h5 class="mb-0">April 2025</h5>
+                                    <div>
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-outline-secondary active">Month</button>
+                                            <button type="button" class="btn btn-outline-secondary">Week</button>
+                                            <button type="button" class="btn btn-outline-secondary">Day</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <table class="table table-bordered calendar-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sunday</th>
+                                            <th>Monday</th>
+                                            <th>Tuesday</th>
+                                            <th>Wednesday</th>
+                                            <th>Thursday</th>
+                                            <th>Friday</th>
+                                            <th>Saturday</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted">30</td>
+                                            <td class="text-muted">31</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>3</td>
+                                            <td>4</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>7</td>
+                                            <td>8</td>
+                                            <td class="bg-light">
+                                                9
+                                                <div class="calendar-event bg-primary text-white p-1 rounded mb-1">
+                                                    <small>9:00 AM - Qualification Call: John Smith</small>
+                                                </div>
+                                                <div class="calendar-event bg-success text-white p-1 rounded mb-1">
+                                                    <small>2:00 PM - Investor Meeting: XYZ Capital</small>
+                                                </div>
+                                            </td>
+                                            <td>10</td>
+                                            <td>11</td>
+                                            <td>12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>13</td>
+                                            <td>14</td>
+                                            <td>15</td>
+                                            <td>16</td>
+                                            <td>17</td>
+                                            <td>18</td>
+                                            <td>19</td>
+                                        </tr>
+                                        <tr>
+                                            <td>20</td>
+                                            <td>21</td>
+                                            <td>22</td>
+                                            <td>23</td>
+                                            <td>24</td>
+                                            <td>25</td>
+                                            <td>26</td>
+                                        </tr>
+                                        <tr>
+                                            <td>27</td>
+                                            <td>28</td>
+                                            <td>29</td>
+                                            <td>30</td>
+                                            <td class="text-muted">1</td>
+                                            <td class="text-muted">2</td>
+                                            <td class="text-muted">3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="list-view" role="tabpanel" aria-labelledby="list-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Activity</th>
+                                                <th>Type</th>
+                                                <th>Related To</th>
+                                                <th>Date & Time</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Qualification Call</td>
+                                                <td><span class="badge bg-primary">Call</span></td>
+                                                <td>John Smith - ABC Corp</td>
+                                                <td>Apr 9, 2025 9:00 AM</td>
+                                                <td><span class="badge bg-warning">Scheduled</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                        <i class="bi bi-check-circle"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Investor Meeting</td>
+                                                <td><span class="badge bg-success">Meeting</span></td>
+                                                <td>XYZ Capital - Series A</td>
+                                                <td>Apr 9, 2025 2:00 PM</td>
+                                                <td><span class="badge bg-warning">Scheduled</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                        <i class="bi bi-check-circle"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Follow-up Email</td>
+                                                <td><span class="badge bg-info">Email</span></td>
+                                                <td>Sarah Johnson - XYZ Inc</td>
+                                                <td>Apr 10, 2025 10:00 AM</td>
+                                                <td><span class="badge bg-warning">Scheduled</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                        <i class="bi bi-check-circle"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Document Review</td>
+                                                <td><span class="badge bg-secondary">Task</span></td>
+                                                <td>Michael Brown - 123 Industries</td>
+                                                <td>Apr 11, 2025 1:00 PM</td>
+                                                <td><span class="badge bg-warning">Scheduled</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                        <i class="bi bi-check-circle"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Initial Outreach</td>
+                                                <td><span class="badge bg-info">Email</span></td>
+                                                <td>Emily Davis - Tech Solutions</td>
+                                                <td>Apr 8, 2025 11:00 AM</td>
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-secondary me-1" title="Edit">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-primary me-1" title="View">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-outline-danger" title="Delete">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="kanban-view" role="tabpanel" aria-labelledby="kanban-tab">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header bg-warning text-white">
+                                                <h5 class="mb-0">Scheduled</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="kanban-item card mb-2">
+                                                    <div class="card-body p-2">
+                                                        <h6>Qualification Call</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> John Smith - ABC Corp</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 9, 2025 9:00 AM</small></p>
+                                                        <span class="badge bg-primary">Call</span>
+                                                    </div>
+                                                </div>
+                                                <div class="kanban-item card mb-2">
+                                                    <div class="card-body p-2">
+                                                        <h6>Investor Meeting</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> XYZ Capital - Series A</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 9, 2025 2:00 PM</small></p>
+                                                        <span class="badge bg-success">Meeting</span>
+                                                    </div>
+                                                </div>
+                                                <div class="kanban-item card mb-2">
+                                                    <div class="card-body p-2">
+                                                        <h6>Follow-up Email</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> Sarah Johnson - XYZ Inc</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 10, 2025 10:00 AM</small></p>
+                                                        <span class="badge bg-info">Email</span>
+                                                    </div>
+                                                </div>
+                                                <div class="kanban-item card">
+                                                    <div class="card-body p-2">
+                                                        <h6>Document Review</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> Michael Brown - 123 Industries</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 11, 2025 1:00 PM</small></p>
+                                                        <span class="badge bg-secondary">Task</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">In Progress</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="kanban-item card mb-2">
+                                                    <div class="card-body p-2">
+                                                        <h6>Due Diligence</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> David Wilson - Global Ventures</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 5-15, 2025</small></p>
+                                                        <span class="badge bg-secondary">Task</span>
+                                                    </div>
+                                                </div>
+                                                <div class="kanban-item card">
+                                                    <div class="card-body p-2">
+                                                        <h6>Investor Outreach Campaign</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> Multiple Contacts</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 1-20, 2025</small></p>
+                                                        <span class="badge bg-info">Email</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header bg-success text-white">
+                                                <h5 class="mb-0">Completed</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="kanban-item card mb-2">
+                                                    <div class="card-body p-2">
+                                                        <h6>Initial Outreach</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> Emily Davis - Tech Solutions</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 8, 2025 11:00 AM</small></p>
+                                                        <span class="badge bg-info">Email</span>
+                                                    </div>
+                                                </div>
+                                                <div class="kanban-item card">
+                                                    <div class="card-body p-2">
+                                                        <h6>Advisor Onboarding</h6>
+                                                        <p class="mb-1"><small><i class="bi bi-person"></i> Robert Johnson - Finance Expert</small></p>
+                                                        <p class="mb-1"><small><i class="bi bi-calendar"></i> Apr 7, 2025 3:00 PM</small></p>
+                                                        <span class="badge bg-success">Meeting</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Activities -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Today's Activities</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Activity</th>
+                                        <th>Type</th>
+                                        <th>Related To</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>9:00 AM</td>
+                                        <td>Qualification Call</td>
+                                        <td><span class="badge bg-primary">Call</span></td>
+                                        <td>John Smith - ABC Corp</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1" title="Start Call">
+                                                <i class="bi bi-telephone"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                <i class="bi bi-check-circle"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" title="Reschedule">
+                                                <i class="bi bi-calendar"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2:00 PM</td>
+                                        <td>Investor Meeting</td>
+                                        <td><span class="badge bg-success">Meeting</span></td>
+                                        <td>XYZ Capital - Series A</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary me-1" title="Join Meeting">
+                                                <i class="bi bi-camera-video"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-success me-1" title="Complete">
+                                                <i class="bi bi-check-circle"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary" title="Reschedule">
+                                                <i class="bi bi-calendar"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Activity Modal -->
+    <div class="modal fade" id="newActivityModal" tabindex="-1" aria-labelledby="newActivityModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newActivityModalLabel">Create New Activity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newActivityForm">
+                        <div class="mb-3">
+                            <label for="activityType" class="form-label">Activity Type</label>
+                            <select class="form-select" id="activityType" required>
+                                <option value="">Select type</option>
+                                <option value="call">Call</option>
+                                <option value="meeting">Meeting</option>
+                                <option value="email">Email</option>
+                                <option value="task">Task</option>
+                                <option value="deadline">Deadline</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="activitySubject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="activitySubject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="activityRelatedTo" class="form-label">Related To</label>
+                            <select class="form-select" id="activityRelatedTo">
+                                <option value="">Select related record</option>
+                                <optgroup label="Contacts">
+                                    <option value="contact_1">John Smith - ABC Corp</option>
+                                    <option value="contact_2">Sarah Johnson - XYZ Inc</option>
+                                    <option value="contact_3">Michael Brown - 123 Industries</option>
+                                </optgroup>
+                                <optgroup label="Deals">
+                                    <option value="deal_1">XYZ Capital - Series A</option>
+                                    <option value="deal_2">ABC Corp - Acquisition</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="activityDate" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="activityDate" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="activityTime" class="form-label">Time</label>
+                                <input type="time" class="form-control" id="activityTime" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="activityDuration" class="form-label">Duration</label>
+                            <select class="form-select" id="activityDuration">
+                                <option value="15">15 minutes</option>
+                                <option value="30" selected>30 minutes</option>
+                                <option value="45">45 minutes</option>
+                                <option value="60">1 hour</option>
+                                <option value="90">1.5 hours</option>
+                                <option value="120">2 hours</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="activityDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="activityDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="activityReminder">
+                            <label class="form-check-label" for="activityReminder">Set reminder</label>
+                        </div>
+                        <div class="mb-3" id="reminderOptions" style="display: none;">
+                            <label for="reminderTime" class="form-label">Remind me</label>
+                            <select class="form-select" id="reminderTime">
+                                <option value="5">5 minutes before</option>
+                                <option value="15" selected>15 minutes before</option>
+                                <option value="30">30 minutes before</option>
+                                <option value="60">1 hour before</option>
+                                <option value="1440">1 day before</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveActivity">Save Activity</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Filter Activities</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterForm">
+                        <div class="mb-3">
+                            <label class="form-label">Activity Type</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="call" id="filterCall" checked>
+                                <label class="form-check-label" for="filterCall">
+                                    Calls
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="meeting" id="filterMeeting" checked>
+                                <label class="form-check-label" for="filterMeeting">
+                                    Meetings
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="email" id="filterEmail" checked>
+                                <label class="form-check-label" for="filterEmail">
+                                    Emails
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="task" id="filterTask" checked>
+                                <label class="form-check-label" for="filterTask">
+                                    Tasks
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="deadline" id="filterDeadline" checked>
+                                <label class="form-check-label" for="filterDeadline">
+                                    Deadlines
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="scheduled" id="filterScheduled" checked>
+                                <label class="form-check-label" for="filterScheduled">
+                                    Scheduled
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="in_progress" id="filterInProgress" checked>
+                                <label class="form-check-label" for="filterInProgress">
+                                    In Progress
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="completed" id="filterCompleted" checked>
+                                <label class="form-check-label" for="filterCompleted">
+                                    Completed
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date Range</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="filterStartDate" class="form-label">From</label>
+                                    <input type="date" class="form-control" id="filterStartDate">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="filterEndDate" class="form-label">To</label>
+                                    <input type="date" class="form-control" id="filterEndDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="filterRelatedTo" class="form-label">Related To</label>
+                            <select class="form-select" id="filterRelatedTo">
+                                <option value="">All</option>
+                                <optgroup label="Contacts">
+                                    <option value="contact_1">John Smith - ABC Corp</option>
+                                    <option value="contact_2">Sarah Johnson - XYZ Inc</option>
+                                    <option value="contact_3">Michael Brown - 123 Industries</option>
+                                </optgroup>
+                                <optgroup label="Deals">
+                                    <option value="deal_1">XYZ Capital - Series A</option>
+                                    <option value="deal_2">ABC Corp - Acquisition</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-outline-secondary" id="resetFilter">Reset</button>
+                    <button type="button" class="btn btn-primary" id="applyFilter">Apply Filter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/activities.js" type="module"></script>
+</body>
+</html>

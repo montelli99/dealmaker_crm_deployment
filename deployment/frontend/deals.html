@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deals - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li class="active">
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li>
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li>
+                    <a href="campaigns.html"><i class="bi bi-megaphone"></i> Campaigns</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search deals...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Deals</h2>
+                    <div>
+                        <button class="btn btn-outline-secondary me-2" id="kanbanViewBtn">
+                            <i class="bi bi-kanban"></i> Kanban
+                        </button>
+                        <button class="btn btn-outline-secondary me-2" id="listViewBtn">
+                            <i class="bi bi-list-ul"></i> List
+                        </button>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDealModal">
+                            <i class="bi bi-plus-circle"></i> Add Deal
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Deal Filters -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="dealTypeFilter" class="form-label">Deal Type</label>
+                                <select class="form-select" id="dealTypeFilter">
+                                    <option value="">All Types</option>
+                                    <option value="Equity">Equity</option>
+                                    <option value="Debt">Debt</option>
+                                    <option value="M&A">M&A</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="dealStageFilter" class="form-label">Stage</label>
+                                <select class="form-select" id="dealStageFilter">
+                                    <option value="">All Stages</option>
+                                    <option value="identification">Lead Identification</option>
+                                    <option value="qualification">Qualification</option>
+                                    <option value="proposal">Proposal</option>
+                                    <option value="active">Active Deal</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="dealValueFilter" class="form-label">Value Range</label>
+                                <select class="form-select" id="dealValueFilter">
+                                    <option value="">All Values</option>
+                                    <option value="0-5">$0 - $5M</option>
+                                    <option value="5-10">$5M - $10M</option>
+                                    <option value="10-25">$10M - $25M</option>
+                                    <option value="25+">$25M+</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="dealProbabilityFilter" class="form-label">Probability</label>
+                                <select class="form-select" id="dealProbabilityFilter">
+                                    <option value="">All</option>
+                                    <option value="high">High (70-100%)</option>
+                                    <option value="medium">Medium (30-70%)</option>
+                                    <option value="low">Low (0-30%)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button class="btn btn-outline-secondary me-2" id="resetDealFilters">Reset</button>
+                            <button class="btn btn-primary" id="applyDealFilters">Apply Filters</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kanban View -->
+                <div id="kanbanView" class="mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="pipeline-container">
+                                <div class="pipeline-stage" data-stage="identification">
+                                    <h6>Lead Identification</h6>
+                                    <div class="pipeline-count">4</div>
+                                    <div class="pipeline-card" data-deal-id="1">
+                                        <div class="pipeline-card-title">Tech Startup Equity</div>
+                                        <div class="pipeline-card-value">$2.5M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 20%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="2">
+                                        <div class="pipeline-card-title">Healthcare M&A</div>
+                                        <div class="pipeline-card-value">$15M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-danger">M&A</span></div>
+                                        <div class="pipeline-card-probability">Probability: 15%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="3">
+                                        <div class="pipeline-card-title">Real Estate Debt</div>
+                                        <div class="pipeline-card-value">$5M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-success">Debt</span></div>
+                                        <div class="pipeline-card-probability">Probability: 25%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="4">
+                                        <div class="pipeline-card-title">Retail Expansion</div>
+                                        <div class="pipeline-card-value">$3.2M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 10%</div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-stage" data-stage="qualification">
+                                    <h6>Qualification</h6>
+                                    <div class="pipeline-count">3</div>
+                                    <div class="pipeline-card" data-deal-id="5">
+                                        <div class="pipeline-card-title">SaaS Series A</div>
+                                        <div class="pipeline-card-value">$8M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 40%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="6">
+                                        <div class="pipeline-card-title">Manufacturing Debt</div>
+                                        <div class="pipeline-card-value">$12M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-success">Debt</span></div>
+                                        <div class="pipeline-card-probability">Probability: 35%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="7">
+                                        <div class="pipeline-card-title">Fintech Acquisition</div>
+                                        <div class="pipeline-card-value">$22M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-danger">M&A</span></div>
+                                        <div class="pipeline-card-probability">Probability: 30%</div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-stage" data-stage="proposal">
+                                    <h6>Proposal</h6>
+                                    <div class="pipeline-count">2</div>
+                                    <div class="pipeline-card" data-deal-id="8">
+                                        <div class="pipeline-card-title">E-commerce Series B</div>
+                                        <div class="pipeline-card-value">$15M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 60%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="9">
+                                        <div class="pipeline-card-title">Logistics M&A</div>
+                                        <div class="pipeline-card-value">$30M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-danger">M&A</span></div>
+                                        <div class="pipeline-card-probability">Probability: 55%</div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-stage" data-stage="active">
+                                    <h6>Active Deal</h6>
+                                    <div class="pipeline-count">2</div>
+                                    <div class="pipeline-card" data-deal-id="10">
+                                        <div class="pipeline-card-title">Biotech Series C</div>
+                                        <div class="pipeline-card-value">$25M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 80%</div>
+                                    </div>
+                                    <div class="pipeline-card" data-deal-id="11">
+                                        <div class="pipeline-card-title">Software Acquisition</div>
+                                        <div class="pipeline-card-value">$45M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-danger">M&A</span></div>
+                                        <div class="pipeline-card-probability">Probability: 75%</div>
+                                    </div>
+                                </div>
+                                <div class="pipeline-stage" data-stage="closed">
+                                    <h6>Closed</h6>
+                                    <div class="pipeline-count">1</div>
+                                    <div class="pipeline-card" data-deal-id="12">
+                                        <div class="pipeline-card-title">AI Startup Series A</div>
+                                        <div class="pipeline-card-value">$10M</div>
+                                        <div class="pipeline-card-type"><span class="badge bg-primary">Equity</span></div>
+                                        <div class="pipeline-card-probability">Probability: 100%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- List View -->
+                <div id="listView" class="mb-4" style="display: none;">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover" id="dealsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Stage</th>
+                                            <th>Value</th>
+                                            <th>Engagement Fee</th>
+                                            <th>Success Fee</th>
+                                            <th>Probability</th>
+                                            <th>Expected Close</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tech Startup Equity</td>
+                                            <td><span class="badge bg-primary">Equity</span></td>
+                                            <td>Lead Identification</td>
+                                            <td>$2.5M</td>
+                                            <td>$25K</td>
+                                            <td>$125K (5%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+                                                </div>
+                                            </td>
+                                            <td>Jun 15, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Healthcare M&A</td>
+                                            <td><span class="badge bg-danger">M&A</span></td>
+                                            <td>Lead Identification</td>
+                                            <td>$15M</td>
+                                            <td>$50K</td>
+                                            <td>$300K (2%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 15%;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">15%</div>
+                                                </div>
+                                            </td>
+                                            <td>Aug 30, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>SaaS Series A</td>
+                                            <td><span class="badge bg-primary">Equity</span></td>
+                                            <td>Qualification</td>
+                                            <td>$8M</td>
+                                            <td>$30K</td>
+                                            <td>$400K (5%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+                                                </div>
+                                            </td>
+                                            <td>May 20, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-commerce Series B</td>
+                                            <td><span class="badge bg-primary">Equity</span></td>
+                                            <td>Proposal</td>
+                                            <td>$15M</td>
+                                            <td>$40K</td>
+                                            <td>$600K (4%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                                                </div>
+                                            </td>
+                                            <td>Apr 10, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Biotech Series C</td>
+                                            <td><span class="badge bg-primary">Equity</span></td>
+                                            <td>Active Deal</td>
+                                            <td>$25M</td>
+                                            <td>$75K</td>
+                                            <td>$750K (3%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                                                </div>
+                                            </td>
+                                            <td>Apr 30, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>AI Startup Series A</td>
+                                            <td><span class="badge bg-primary">Equity</span></td>
+                                            <td>Closed</td>
+                                            <td>$10M</td>
+                                            <td>$35K</td>
+                                            <td>$500K (5%)</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+                                                </div>
+                                            </td>
+                                            <td>Mar 15, 2025</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="View"><i class="bi bi-eye"></i></button>
+                                                    <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" title="Edit"><i class="bi bi-pencil"></i></button>
+                                                    <button class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete"><i class="bi bi-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <nav aria-label="Deals pagination">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Deal Modal -->
+    <div class="modal fade" id="addDealModal" tabindex="-1" aria-labelledby="addDealModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDealModalLabel">Add New Deal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDealForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="dealName" class="form-label">Deal Name *</label>
+                                <input type="text" class="form-control" id="dealName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dealType" class="form-label">Deal Type *</label>
+                                <select class="form-select" id="dealType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Equity">Equity</option>
+                                    <option value="Debt">Debt</option>
+                                    <option value="M&A">M&A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="dealStage" class="form-label">Stage</label>
+                                <select class="form-select" id="dealStage">
+                                    <option value="identification">Lead Identification</option>
+                                    <option value="qualification">Qualification</option>
+                                    <option value="proposal">Proposal</option>
+                                    <option value="active">Active Deal</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="dealValue" class="form-label">Deal Value ($)</label>
+                                <input type="number" class="form-control" id="dealValue" min="0" step="100000">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="engagementFee" class="form-label">Engagement Fee ($)</label>
+                                <input type="number" class="form-control" id="engagementFee" min="0" step="1000">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="successFeePercentage" class="form-label">Success Fee (%)</label>
+                                <input type="number" class="form-control" id="successFeePercentage" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="probability" class="form-label">Probability (%)</label>
+                                <input type="range" class="form-range" min="0" max="100" step="5" id="probability">
+                                <div class="d-flex justify-content-between">
+                                    <small>0%</small>
+                                    <small>50%</small>
+                                    <small>100%</small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="expectedCloseDate" class="form-label">Expected Close Date</label>
+                                <input type="date" class="form-control" id="expectedCloseDate">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dealDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="dealDescription" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Key Contacts</label>
+                            <div class="input-group mb-2">
+                                <select class="form-select" id="contactSelect">
+                                    <option value="">Select Contact</option>
+                                    <option value="1">John Smith (Client)</option>
+                                    <option value="2">Sarah Johnson (Advisor)</option>
+                                    <option value="3">Michael Brown (Advisor)</option>
+                                    <option value="4">Jennifer Lee (Prospect)</option>
+                                    <option value="5">Robert Chen (Advisor)</option>
+                                </select>
+                                <select class="form-select" id="contactRole">
+                                    <option value="client">Client</option>
+                                    <option value="advisor">Advisor</option>
+                                    <option value="investor">Investor</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button class="btn btn-outline-secondary" type="button" id="addContactToDeal">Add</button>
+                            </div>
+                            <div id="dealContactsList" class="list-group">
+                                <!-- Selected contacts will appear here -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveDeal">Save Deal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/deals.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base - Dealmaker CRM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dealmaker CRM</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="index.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="contacts.html"><i class="bi bi-people"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="deals.html"><i class="bi bi-currency-dollar"></i> Deals</a>
+                </li>
+                <li>
+                    <a href="activities.html"><i class="bi bi-calendar-check"></i> Activities</a>
+                </li>
+                <li>
+                    <a href="documents.html"><i class="bi bi-file-earmark-text"></i> Documents</a>
+                </li>
+                <li>
+                    <a href="voice-agents.html"><i class="bi bi-telephone"></i> Voice Agents</a>
+                </li>
+                <li>
+                    <a href="email-agents.html"><i class="bi bi-envelope"></i> Email Agents</a>
+                </li>
+                <li>
+                    <a href="workflows.html"><i class="bi bi-diagram-3"></i> Workflows</a>
+                </li>
+                <li class="active">
+                    <a href="knowledge-base.html"><i class="bi bi-book"></i> Knowledge Base</a>
+                </li>
+                <li>
+                    <a href="reports.html"><i class="bi bi-graph-up"></i> Reports</a>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="ms-auto d-flex">
+                        <div class="input-group me-3">
+                            <input type="text" class="form-control" placeholder="Search knowledge base...">
+                            <button class="btn btn-outline-secondary" type="button"><i class="bi bi-search"></i></button>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Knowledge Base</h2>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newArticleModal">
+                        <i class="bi bi-plus-circle"></i> New Article
+                    </button>
+                </div>
+                
+                <div class="row">
+                    <!-- Knowledge Base Categories -->
+                    <div class="col-md-3">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Categories</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="list-group list-group-flush">
+                                    <a href="#" class="list-group-item list-group-item-action active" data-category="business-model">
+                                        <i class="bi bi-building me-2"></i> Business Model
+                                        <span class="badge bg-secondary float-end">8</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="client-acquisition">
+                                        <i class="bi bi-people me-2"></i> Client Acquisition
+                                        <span class="badge bg-secondary float-end">12</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="deal-management">
+                                        <i class="bi bi-currency-dollar me-2"></i> Deal Management
+                                        <span class="badge bg-secondary float-end">10</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="legal-compliance">
+                                        <i class="bi bi-shield-check me-2"></i> Legal & Compliance
+                                        <span class="badge bg-secondary float-end">6</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="scripts-templates">
+                                        <i class="bi bi-file-text me-2"></i> Scripts & Templates
+                                        <span class="badge bg-secondary float-end">15</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="case-studies">
+                                        <i class="bi bi-journal-text me-2"></i> Case Studies
+                                        <span class="badge bg-secondary float-end">5</span>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="faqs">
+                                        <i class="bi bi-question-circle me-2"></i> FAQs
+                                        <span class="badge bg-secondary float-end">20</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Recently Added</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="list-group list-group-flush">
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Leveraging Advisors for Credibility</h6>
+                                            <small>2d ago</small>
+                                        </div>
+                                        <small class="text-muted">Client Acquisition</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Dual Fee Structure Implementation</h6>
+                                            <small>3d ago</small>
+                                        </div>
+                                        <small class="text-muted">Business Model</small>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Capital Raise Process Timeline</h6>
+                                            <small>5d ago</small>
+                                        </div>
+                                        <small class="text-muted">Deal Management</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Knowledge Base Content -->
+                    <div class="col-md-9">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Business Model</h5>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-secondary me-2">
+                                        <i class="bi bi-printer"></i> Print
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-share"></i> Share
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="article-list">
+                                    <div class="article mb-4">
+                                        <h4>Dealmaker Business Model Overview</h4>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-primary me-2">Core Knowledge</span>
+                                            <small class="text-muted">Last updated: Apr 9, 2025</small>
+                                        </div>
+                                        <p>The Dealmaker business model is built on a dual revenue stream approach that aligns incentives with client success while providing consistent cash flow. This model has been proven to generate significant revenue while delivering exceptional value to clients.</p>
+                                        
+                                        <h5>Key Components</h5>
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Engagement Fees</h6>
+                                                        <p class="card-text">Upfront fees ranging from $10,000-$50,000 that cover initial work and create commitment. These fees provide immediate cash flow and qualify serious clients.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Success Fees</h6>
+                                                        <p class="card-text">Performance-based fees typically 2-5% of transaction value, creating alignment with client outcomes and significant upside potential.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <h5>Service Tiers</h5>
+                                        <table class="table table-bordered">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Tier</th>
+                                                    <th>Engagement Fee</th>
+                                                    <th>Success Fee</th>
+                                                    <th>Target Client</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Standard</td>
+                                                    <td>$10,000 - $25,000</td>
+                                                    <td>5% of transaction value</td>
+                                                    <td>Small businesses ($1M-$5M)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Premium</td>
+                                                    <td>$25,000 - $50,000</td>
+                                                    <td>3-4% of transaction value</td>
+                                                    <td>Mid-market companies ($5M-$50M)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Enterprise</td>
+                                                    <td>$50,000+</td>
+                                                    <td>2-3% of transaction value</td>
+                                                    <td>Large enterprises ($50M+)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <h5>Implementation Strategy</h5>
+                                        <ol>
+                                            <li><strong>Value-Based Positioning:</strong> Focus on ROI and outcomes rather than hourly rates</li>
+                                            <li><strong>Clear Deliverables:</strong> Define specific deliverables for engagement fees</li>
+                                            <li><strong>Milestone Payments:</strong> Structure engagement fees in 2-3 milestone payments</li>
+                                            <li><strong>Success Definition:</strong> Clearly define what constitutes "success" for performance fees</li>
+                                            <li><strong>Advisor Network:</strong> Leverage advisors to enhance credibility and service delivery</li>
+                                        </ol>
+                                        
+                                        <div class="mt-4">
+                                            <a href="#" class="btn btn-outline-primary">Read Full Article</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <hr>
+                                    
+                                    <div class="article mb-4">
+                                        <h4>Regulatory Framework for Capital Advisors</h4>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-warning me-2">Legal</span>
+                                            <small class="text-muted">Last updated: Apr 8, 2025</small>
+                                        </div>
+                                        <p>Understanding the regulatory landscape is critical for operating legally as a capital advisor. This article outlines the key regulations and compliance requirements for Dealmakers.</p>
+                                        
+                                        <h5>Key Regulatory Considerations</h5>
+                                        <ul>
+                                            <li>Broker-Dealer Registration Requirements</li>
+                                            <li>Finder's Fee Regulations</li>
+                                            <li>Securities Law Compliance</li>
+                                            <li>State-Specific Requirements</li>
+                                            <li>Documentation and Disclosure Standards</li>
+                                        </ul>
+                                        
+                                        <div class="alert alert-warning">
+                                            <i class="bi bi-exclamation-triangle me-2"></i>
+                                            <strong>Important:</strong> This article provides general guidance only. Always consult with a qualified attorney for specific legal advice related to your jurisdiction and circumstances.
+                                        </div>
+                                        
+                                        <div class="mt-4">
+                                            <a href="#" class="btn btn-outline-primary">Read Full Article</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <hr>
+                                    
+                                    <div class="article">
+                                        <h4>Advisor Network Development</h4>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="badge bg-success me-2">Strategy</span>
+                                            <small class="text-muted">Last updated: Apr 7, 2025</small>
+                                        </div>
+                                        <p>Building a network of specialized advisors is a cornerstone of the Dealmaker methodology. This approach enhances credibility, expands service capabilities, and creates additional revenue streams through fee-sharing arrangements.</p>
+                                        
+                                        <h5>Advisor Categories</h5>
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Industry Experts</h6>
+                                                        <p class="card-text">Specialists with deep knowledge in specific industries who can provide insights and credibility.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Technical Specialists</h6>
+                                                        <p class="card-text">Experts in specific technical areas such as valuation, tax, legal, or due diligence.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Capital Sources</h6>
+                                                        <p class="card-text">Investors, lenders, and other capital providers who can facilitate transactions.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <h5>Fee-Sharing Structure</h5>
+                                        <p>The recommended fee-sharing structure allocates 20-30% of success fees to advisors who contribute significantly to deal completion. This creates alignment while maintaining profitability.</p>
+                                        
+                                        <div class="mt-4">
+                                            <a href="#" class="btn btn-outline-primary">Read Full Article</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <nav aria-label="Knowledge base navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Article Modal -->
+    <div class="modal fade" id="newArticleModal" tabindex="-1" aria-labelledby="newArticleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newArticleModalLabel">Create New Knowledge Base Article</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newArticleForm">
+                        <div class="mb-3">
+                            <label for="articleTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="articleTitle" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="articleCategory" class="form-label">Category</label>
+                                <select class="form-select" id="articleCategory" required>
+                                    <option value="">Select a category</option>
+                                    <option value="business-model">Business Model</option>
+                                    <option value="client-acquisition">Client Acquisition</option>
+                                    <option value="deal-management">Deal Management</option>
+                                    <option value="legal-compliance">Legal & Compliance</option>
+                                    <option value="scripts-templates">Scripts & Templates</option>
+                                    <option value="case-studies">Case Studies</option>
+                                    <option value="faqs">FAQs</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="articleTags" class="form-label">Tags</label>
+                                <input type="text" class="form-control" id="articleTags" placeholder="Separate tags with commas">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleSummary" class="form-label">Summary</label>
+                            <textarea class="form-control" id="articleSummary" rows="2" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="articleContent" class="form-label">Content</label>
+                            <textarea class="form-control" id="articleContent" rows="10" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="articleFeatured">
+                            <label class="form-check-label" for="articleFeatured">Feature this article</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveNewArticle">Save Article</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/knowledge-base.js" type="module"></script>
+</body>
+</html>

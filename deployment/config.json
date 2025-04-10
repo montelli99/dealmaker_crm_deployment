@@ -1,0 +1,28 @@
+{
+  "name": "Dealmaker CRM",
+  "version": "1.0.0",
+  "description": "CRM system based on the Dealmaker methodology",
+  "backend": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false
+  },
+  "integrations": {
+    "voice_agent": {
+      "provider": "twilio",
+      "api_key": "YOUR_API_KEY",
+      "api_secret": "YOUR_API_SECRET",
+      "voice_provider": "eleven_labs",
+      "voice_api_key": "YOUR_ELEVEN_LABS_API_KEY"
+    },
+    "email_agent": {
+      "provider": "deepseek",
+      "model": "deepseek-3.1",
+      "api_key": "YOUR_DEEPSEEK_API_KEY"
+    }
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "./database.db"
+  }
+}
